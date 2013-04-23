@@ -1,0 +1,40 @@
+% Persistent-GP.tex
+\begin{hcarentry}{Persistent} 
+\label{persistent}
+\report{Greg Weber}%05/12
+\participants{Michael Snoyman, Felipe Lessa}
+\status{stable} 
+\makeheader
+
+Persistent is a type-safe data store interface for Haskell.
+Haskell has many different database bindings available. However, most
+of these have little knowledge of a schema and therefore do not provide
+useful static guarantees. Persistent is designed to work across different databases, and works on Sqlite, PostgreSQL, MongoDB, and MySQL. MySQL is a new edition since the last HCAR, thanks to Felipe Lessa.
+
+Since the last report, Persistent has been structured into separate type-classes. There is one for storage/serialization, and one for querying. This means that anyone wanting to create database abstractions can re-use the battle-testsed persistent storage/serialization layer. Persistent's query layer is universal across different backends and uses combinators:
+
+\begin{code}
+selectList [  PersonFirstName ==. "Simon", 
+              PersonLastName ==. "Jones"] []
+\end{code}
+
+There are some drawbacks to the query layer: it doesn't cover every use case. Since the last HCAR report, Persistent has gained some very good support for raw SQL. One can run arbitrary SQL queries and get back Haskell records or types for single columns.
+
+Persistent also gained the ability to store embedded objects. One can store a list or a Map inside a column/field. The current implementation is most useful for MongoDB. In SQL an embedded object is stored as JSON.
+
+\FuturePlans 
+Future directions for Persistent:
+\begin{compactitem}
+\item Full CouchDB support
+\item A MongoDB specific query layer
+\item Adding key-value databases like Redis without a query layer.
+\end{compactitem}
+
+Most of Persistent development occurs within the Yesod~\cref{yesod} community.
+However, there is nothing specific to Yesod about it.
+You can have a type-safe, productive way to store data,
+even on a project that has nothing to do with web development.
+
+\FurtherReading 
+\url{http://yesodweb.com/book/persistent} 
+\end{hcarentry}

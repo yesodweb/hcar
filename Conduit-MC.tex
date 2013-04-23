@@ -1,0 +1,27 @@
+% Conduit-MC.tex
+\begin{hcarentry}[updated]{Conduit}
+\label{conduit}
+\report{Michael Snoyman}%11/12
+\status{stable}
+\makeheader
+
+While lazy I/O has served the Haskell community well for many purposes in the past, it is not a panacea. The inherent non-determinism with regard to resource management can cause problems in such situations as file serving from a high traffic web server, where the bottleneck is the number of file descriptors available to a process.
+
+Left fold enumerators have been the most common approach to dealing with streaming data without using lazy I/O. While it is certainly a workable solution, it requires a certain inversion of control to be applied to code. Additionally, many people have found the concept daunting. Most importantly for our purposes, certain kinds of operations, such as interleaving data sources and sinks, are prohibitively difficult under that model.
+
+The conduit package was designed as an alternate approach to the same problem. The root of our simplification is removing one of the constraints in the enumerator approach. In order to guarantee proper resource finalization, the data source must always maintain the flow of execution in a program. This can lead to confusing code in many cases. In conduit, we separate out guaranteed resource finalization as its own component, namely the ResourceT transformer.
+
+Once this transformation is in place, data producers, consumers, and transformers (known as Sources, Sinks, and Conduits, respectively) can each maintain control of their own execution, and pass off control via coroutines. The user need not deal directly with any of this low-level plumbing; a simple monadic interface (inspired greatly by the pipes package) is sufficient for almost all use cases.
+
+Since its initial release, conduit has been through many design iterations, all the while keeping to its initial core principles. The most recent major release --- version 0.5 --- was made in June of this year. This design is working efficiently and properly for conduit's use cases, and there are no plans for further breaking changes. The package can be considered mature and ready to be used by the general public.
+
+There is a rich ecosystem of libraries available to be used with conduit, including cryptography, network communications, serialization, XML processing, and more. The Web Application Interface was the original motivator for creating the library, and continues to use it for expressing request and response bodies between servers and applications. As such, conduit is also a major player in the Yesod ecosystem.
+
+The library is available on Hackage. The Haddocks contain a fairly detailed tutorial explaining common usage patterns. You can find many conduit-based packages in the Conduit category on Hackage as well.
+
+\FurtherReading
+\begin{compactitem}
+\item \url{http://hackage.haskell.org/packages/archive/conduit/0.5.2.7/doc/html/Data-Conduit.html}
+\item \url{http://hackage.haskell.org/packages/archive/pkg-list.html#cat:conduit}
+\end{compactitem}
+\end{hcarentry}

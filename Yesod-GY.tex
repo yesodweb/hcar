@@ -1,0 +1,52 @@
+% Yesod-GY.tex
+\begin{hcarentry}{Yesod} 
+\label{yesod}
+\report{Greg Weber}%05/12
+\participants{Michael Snoyman, Luite Stegeman, Felipe Lessa}
+\status{stable} 
+\makeheader
+
+Yesod is a traditional MVC RESTful framework. By applying Haskell's strengths to this paradigm, we have created a web framework that helps users create highly scalable web applications.
+
+Performance scalablity comes from the amazing GHC compiler and runtime. GHC provides fast code and built-in evented asynchronous IO.
+
+But Yesod is even more focused on scalable development. The key to achieving this is applying Haskell's type-safety to an otherwise traditional MVC REST web framework.
+
+Of course type-safety guarantees against typos or the wrong type in a function. But Yesod cranks this up a notch to guarantee common web application errors won't occur.
+\begin{itemize}
+\item declarative routing with type-safe urls --- say goodbye to broken links
+\item no XSS attacks --- form submissions are automatically sanitized
+\item database safety through the Persistent library \cref{persistent} --- no SQL injection and queries are always valid
+\item valid template variables with proper template insertion --- variables are known at compile time and treated differently according to their type using the shakesperean templating system.
+\end{itemize}
+
+When type safety conflicts with programmer productivity,
+Yesod is not afraid to use Haskell's most advanced features
+of Template Haskell and quasi-quoting to provide
+Easier development for its users. In particular, these are used for
+declarative routing, declarative schemas, and compile-time templates.
+
+MVC stands for model-view-controller. The preferred library for models
+is Persistent~\cref{persistent}.  View can be handled by the Shakespeare family of compile-time template languages. This includes Hamlet, which takes the tedium out of HTML. Both of these libraries are optional, and you can use any Haskell alternative. Controllers are invoked through declarative routing. Their return type shows which response types are allowed for the request.
+
+Yesod is broken up into many smaller projects and leverages Wai \cref{wai} to communicate with the server. This means that many of the powerful features of Yesod can be used in different web development stacks.
+
+Yesod finally reached its 1.0 version.  The last HCAR entry was for the 0.8 version. Some of the major changes since then are:
+
+\begin{itemize}
+\item Luite Stegemen contributed a faster and improved development environment that used the GHC API
+\item Nubis Bruno contributed yesod-test, a convenient testing framework.
+\item Flexible session interface
+\item Flexible placement of Javascript on the HTML page
+\item Switch from enumerators to conduits
+\end{itemize}
+
+We are excited to have achieved a 1.0 release. This signifies maturity and API stability and a web framework that gives developers all the tools they need for productive web development. Future directions for Yesod are now largely driven by community input and patches. Easier client-side interaction is definitely one concern that Yesod is working on going forward. The 1.0 release features better coffeescript support and even roy.js support
+
+The Yesod site (\url{http://www.yesodweb.com/}) is a great place for information. It has code examples, screencasts, the Yesod blog and --- most importantly --- a book on Yesod.
+
+To see an example site with source code available, you can view Haskellers~\cref{haskellers} source code: (\url{https://github.com/snoyberg/haskellers}).
+
+\FurtherReading 
+\url{http://www.yesodweb.com/} 
+\end{hcarentry} 

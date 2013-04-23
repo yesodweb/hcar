@@ -1,0 +1,22 @@
+% WAI-GW.tex
+\begin{hcarentry}{WAI}
+\label{wai}
+\report{Greg Weber}%05/12
+\status{stable}
+\makeheader
+
+The Web Application Interface (WAI) is an interface between Haskell web
+applications and Haskell web servers. By targeting the WAI, a web framework or web application gets access to multiple deployment platforms. Platforms in use include CGI, the Warp web server, and desktop webkit.
+
+Since the last HCAR, WAI has switched to conduits~\cref{conduit}. WAI also added a vault parameter to the request type to allow middleware to store arbitrary data.
+
+WAI is also a platform for re-using code between web applications and web frameworks through WAI middleware and WAI applications. WAI middleware can inspect and transform a request, for example by automatically gzipping a response or logging a request.
+
+By targeting WAI, every web framework can share WAI code instead of wasting effort re-implementing the same functionality. There are also some new web frameworks that take a completely different approach to web development that use WAI, such as webwire (FRP) and dingo (GUI). Since the last HCAR, another web framework called Scotty was released. WAI applications can send a response themselves. For example, wai-app-static is used by Yesod to serve static files. However, one does not need to use a web framework, but can simply build a web application using the WAI interface alone. The Hoogle %\cref{hoogle} 
+web service targets WAI directly.
+
+The WAI standard has proven itself capable for different users and there are no outstanding plans for changes or improvements.
+
+\FurtherReading
+\url{http://www.yesodweb.com/book/wai}
+\end{hcarentry}
