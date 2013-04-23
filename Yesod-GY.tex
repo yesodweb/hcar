@@ -1,8 +1,8 @@
 % Yesod-GY.tex
 \begin{hcarentry}{Yesod} 
 \label{yesod}
-\report{Greg Weber}%05/12
-\participants{Michael Snoyman, Luite Stegeman, Felipe Lessa}
+\report{Michael Snoyman}%05/13
+\participants{Greg Weber, Luite Stegeman, Felipe Lessa}
 \status{stable} 
 \makeheader
 
@@ -31,17 +31,22 @@ is Persistent~\cref{persistent}.  View can be handled by the Shakespeare family 
 
 Yesod is broken up into many smaller projects and leverages Wai \cref{wai} to communicate with the server. This means that many of the powerful features of Yesod can be used in different web development stacks.
 
-Yesod finally reached its 1.0 version.  The last HCAR entry was for the 0.8 version. Some of the major changes since then are:
+We're currently putting the finishing touches on the 1.2 release of Yesod, which introduces a number of simplifications, especially to the subsite handling. Most applications should be able to upgrade easily. Some of the notable features are:
 
 \begin{itemize}
-\item Luite Stegemen contributed a faster and improved development environment that used the GHC API
-\item Nubis Bruno contributed yesod-test, a convenient testing framework.
-\item Flexible session interface
-\item Flexible placement of Javascript on the HTML page
-\item Switch from enumerators to conduits
+\item Much more powerful multi-representation support via the selectRep/provideRep API.
+\item More efficient session handling.
+\item All Handler functions live in a typeclass, providing you with auto-lifting.
+\item Type-based caching of responses via the cached function.
+\item More sensible subsite handling, switch to HandlerT/WidgetT transformers.
+\item Simplified dispatch system, including a lighter-weight Yesod.
+\item Simplified streaming data mechanism, for both database and non-database responses.
+\item Completely overhauled yesod-test, making it easier to use and providing cleaner integration with hspec.
+\item Refactored persistent module structure for clarity and ease-of-use.
+\item yesod-auth's email plugin now supports logging in via username in addition to email address.
 \end{itemize}
 
-We are excited to have achieved a 1.0 release. This signifies maturity and API stability and a web framework that gives developers all the tools they need for productive web development. Future directions for Yesod are now largely driven by community input and patches. Easier client-side interaction is definitely one concern that Yesod is working on going forward. The 1.0 release features better coffeescript support and even roy.js support
+Since the 1.0 release, Yesod has maintained a high level of API stability, and we intend to continue this tradition. We consider Yesod to be a mature web framework that gives developers all the tools they need for productive web development. Future directions for Yesod are now largely driven by community input and patches. We've been making progress on the goal of easier client-side interaction, and have high-level interaction with languages like Fay, TypeScript, and CoffeScript.
 
 The Yesod site (\url{http://www.yesodweb.com/}) is a great place for information. It has code examples, screencasts, the Yesod blog and --- most importantly --- a book on Yesod.
 

@@ -1,7 +1,7 @@
 % Conduit-MC.tex
 \begin{hcarentry}[updated]{Conduit}
 \label{conduit}
-\report{Michael Snoyman}%11/12
+\report{Michael Snoyman}%05/13
 \status{stable}
 \makeheader
 
@@ -13,15 +13,16 @@ The conduit package was designed as an alternate approach to the same problem. T
 
 Once this transformation is in place, data producers, consumers, and transformers (known as Sources, Sinks, and Conduits, respectively) can each maintain control of their own execution, and pass off control via coroutines. The user need not deal directly with any of this low-level plumbing; a simple monadic interface (inspired greatly by the pipes package) is sufficient for almost all use cases.
 
-Since its initial release, conduit has been through many design iterations, all the while keeping to its initial core principles. The most recent major release --- version 0.5 --- was made in June of this year. This design is working efficiently and properly for conduit's use cases, and there are no plans for further breaking changes. The package can be considered mature and ready to be used by the general public.
+Since its initial release, conduit has been through many design iterations, all the while keeping to its initial core principles. Since the last HCAR, we've released version 1.0. This release introduces a simplification of the public facing API, optimizing for the common use cases. This was a minor change, and the conduit ecosystem has already caught up. The package has been in a mature state for quite some time now, and can be relied upon for most streaming data needs.
 
 There is a rich ecosystem of libraries available to be used with conduit, including cryptography, network communications, serialization, XML processing, and more. The Web Application Interface was the original motivator for creating the library, and continues to use it for expressing request and response bodies between servers and applications. As such, conduit is also a major player in the Yesod ecosystem.
 
-The library is available on Hackage. The Haddocks contain a fairly detailed tutorial explaining common usage patterns. You can find many conduit-based packages in the Conduit category on Hackage as well.
+The library is available on Hackage. There is an interactive tutorial available on the FP Complete School of Haskell. You can find many conduit-based packages in the Conduit category on Hackage as well.
 
 \FurtherReading
 \begin{compactitem}
-\item \url{http://hackage.haskell.org/packages/archive/conduit/0.5.2.7/doc/html/Data-Conduit.html}
+\item \url{http://hackage.haskell.org/package/conduit}
+\item \url{https://www.fpcomplete.com/user/snoyberg/library-documentation/conduit-overview}
 \item \url{http://hackage.haskell.org/packages/archive/pkg-list.html#cat:conduit}
 \end{compactitem}
 \end{hcarentry}
