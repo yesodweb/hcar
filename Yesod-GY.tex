@@ -6,7 +6,7 @@
 \status{stable} 
 \makeheader
 
-Yesod is a traditional MVC RESTful framework. By applying Haskell's strengths to this paradigm, we have created a web framework that helps users create highly scalable web applications.
+Yesod is a traditional MVC RESTful framework. By applying Haskell's strengths to this paradigm, Yesod helps users create highly scalable web applications.
 
 Performance scalablity comes from the amazing GHC compiler and runtime. GHC provides fast code and built-in evented asynchronous IO.
 
@@ -23,15 +23,15 @@ Of course type-safety guarantees against typos or the wrong type in a function. 
 When type safety conflicts with programmer productivity,
 Yesod is not afraid to use Haskell's most advanced features
 of Template Haskell and quasi-quoting to provide
-Easier development for its users. In particular, these are used for
+easier development for its users. In particular, these are used for
 declarative routing, declarative schemas, and compile-time templates.
 
 MVC stands for model-view-controller. The preferred library for models
-is Persistent~\cref{persistent}.  View can be handled by the Shakespeare family of compile-time template languages. This includes Hamlet, which takes the tedium out of HTML. Both of these libraries are optional, and you can use any Haskell alternative. Controllers are invoked through declarative routing. Their return type shows which response types are allowed for the request.
+is Persistent~\cref{persistent}. Views can be handled by the Shakespeare family of compile-time template languages. This includes Hamlet, which takes the tedium out of HTML. Both of these libraries are optional, and you can use any Haskell alternative. Controllers are invoked through declarative routing and can return different representations of a resource (html, json, etc).
 
-Yesod is broken up into many smaller projects and leverages Wai \cref{wai} to communicate with the server. This means that many of the powerful features of Yesod can be used in different web development stacks.
+Yesod is broken up into many smaller projects and leverages Wai \cref{wai} to communicate with the server. This means that many of the powerful features of Yesod can be used in different web development stacks that use WAI such as Scotty.
 
-We're currently putting the finishing touches on the 1.2 release of Yesod, which introduces a number of simplifications, especially to the subsite handling. Most applications should be able to upgrade easily. Some of the notable features are:
+The new 1.2 release of Yesod, introduces a number of simplifications, especially to the subsite handling. Most applications should be able to upgrade easily. Some of the notable features are:
 
 \begin{itemize}
 \item Much more powerful multi-representation support via the selectRep/provideRep API.
@@ -42,11 +42,13 @@ We're currently putting the finishing touches on the 1.2 release of Yesod, which
 \item Simplified dispatch system, including a lighter-weight Yesod.
 \item Simplified streaming data mechanism, for both database and non-database responses.
 \item Completely overhauled yesod-test, making it easier to use and providing cleaner integration with hspec.
-\item Refactored persistent module structure for clarity and ease-of-use.
 \item yesod-auth's email plugin now supports logging in via username in addition to email address.
+\item Refactored persistent module structure for clarity and ease-of-use.
+\item Easy asset combining for static javascript and css files
+\item Faster shakespeare template reloading and support for TypeScript templates.
 \end{itemize}
 
-Since the 1.0 release, Yesod has maintained a high level of API stability, and we intend to continue this tradition. We consider Yesod to be a mature web framework that gives developers all the tools they need for productive web development. Future directions for Yesod are now largely driven by community input and patches. We've been making progress on the goal of easier client-side interaction, and have high-level interaction with languages like Fay, TypeScript, and CoffeScript.
+Since the 1.0 release, Yesod has maintained a high level of API stability, and we intend to continue this tradition. The 1.2 release introduces a lot of potential code breakage, but most of the required updates should be very straightforward. Future directions for Yesod are now largely driven by community input and patches. We've been making progress on the goal of easier client-side interaction, and have high-level interaction with languages like Fay, TypeScript, and CoffeScript.
 
 The Yesod site (\url{http://www.yesodweb.com/}) is a great place for information. It has code examples, screencasts, the Yesod blog and --- most importantly --- a book on Yesod.
 
