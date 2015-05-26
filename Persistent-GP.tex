@@ -6,15 +6,9 @@
 \status{stable}
 \makeheader
 
-Persistent is a type-safe data store interface for Haskell.
-After years of stability, Persistent just recently had a 2.0 release.
+The last HCAR announcement was for the release of Persistent 2.0, featuring a flexible primary key type.
 
-Persistent 2.0 features
-
-\begin{compactitem}
-\item a flexible, yet more type-safe Key type
-\item a simplified monad stack
-\end{compactitem}
+Since then, persistent has mostly experienced bug fixes, including recent fixes and increased backend support for the new flexible primary key type.
 
 Haskell has many different database bindings available, but most provide few
 usefeul static guarantees.  Persistent uses knowledge of the data schema to
@@ -37,10 +31,11 @@ specific.  esqueleto is a library for writing arbitrary SQL queries that is
 built on Persistent.
 
 \FuturePlans
-Possible future directions for Persistent:
+Persistent is in a stable, feature complete state. Future plans are only to increase its ease the places where it can be easitly used:
+
 \begin{compactitem}
 \item Declaring a schema separately from a record, possibly leveraging GHC's
-  new annotations feature
+  new annotations feature or another pattern
 \end{compactitem}
 
 Persistent users may also be interested in Groundhog \cref{groundhog}, a
