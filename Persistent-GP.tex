@@ -1,46 +1,60 @@
 % Persistent-GP.tex
-\begin{hcarentry}{Persistent} 
+\begin{hcarentry}{Persistent}
 \label{persistent}
-\report{Michael Snoyman}%05/13
-\participants{Greg Weber, Felipe Lessa}
-\status{stable} 
+\report{Greg Weber}%11/14
+\participants{Michael Snoyman, Felipe Lessa}
+\status{stable}
 \makeheader
 
 Persistent is a type-safe data store interface for Haskell.
-Haskell has many different database bindings available, but they provide few usefeul static guarantees.
-Persistent uses knowledge of the data schema to provide a type-safe interface that re-uses existing database binding libraries. Persistent is designed to work across different databases, and works on Sqlite, PostgreSQL, MongoDB, and MySQL, with an experimental backend for CouchDB.
+After years of stability, Persistent just recently had a 2.0 release.
 
-The 1.2 release features a refactoring of the module hierarchy. We're taking this opporunity to clean up a few idiosyncracies in the API and make the documentation a bit more helpful, but otherwise the library is remaining unchanged.
+Persistent 2.0 features
 
-The MongoDB backend features new helpers, query operators, and bug fixes for working with embedded/nested models. One can store a list of Maps or records inside a column/field. This is required for proper usage of MongoDB. In SQL an embedded object is stored as JSON, which is convenient as long as the column is not queried.
-
-In order to accomodate various different backend types, Persistent is broken up into multiple components (separated by type classes). There is one for storage/serialization, one for uniqueness, and one for querying. This means that anyone wanting to create database abstractions can re-use the battle-tested persistent storage/serialization layer without having to implement the full query interface.
-
-Persistent's query layer is the same for any backend that implement the query interface, although backends can define their own additional operators. The interface is a straightforward usage of combinators:
-
-\begin{code}
-selectList [  PersonFirstName ==. "Simon", 
-              PersonLastName ==. "Jones"] []
-\end{code}
-
-There are some drawbacks to the query layer: it doesn't cover every use case. Persistent has built-in some very good support for raw SQL. One can run arbitrary SQL queries and get back Haskell records or types for single columns. In addition, Felipe Lessa has created a library called esqueleto for having complete control over generating SQL but with type safety. persistent-MongoDB also has helpers for working with raw queries.
-
-\FuturePlans 
-Possible future directions for Persistent:
 \begin{compactitem}
-\item Adding key-value databases such as Redis without a query layer.
-\item Full CouchDB support
+\item a flexible, yet more type-safe Key type
+\item a simplified monad stack
 \end{compactitem}
 
-Persistent users may also be interested in Groundhog, a similar project.
+Haskell has many different database bindings available, but most provide few
+usefeul static guarantees.  Persistent uses knowledge of the data schema to
+provide a type-safe interface to the database.  Persistent is designed to work
+across different databases, currently working on Sqlite, PostgreSQL, MongoDB,
+MySQL, Redis, and ZooKeeper.
 
-Most of Persistent development occurs within the Yesod~\cref{yesod} community.
-However, there is nothing specific to Yesod about it.
-You can have a type-safe, productive way to store data,
-even on a project that has nothing to do with web development.
+Persistent provides a high-level query interface that works against all
+backends.
 
+\begin{code}
+selectList [ PersonFirstName ==. "Simon",
+             PersonLastName ==. "Jones"] []
+\end{code}
 
-\FurtherReading 
-\url{http://www.yesodweb.com/book/persistent} 
-\url{http://hackage.haskell.org/package/esqueleto}
+The result of this will be a list of Haskell records.
+
+Persistent can also be used to write type-safe query libraries that are
+specific.  esqueleto is a library for writing arbitrary SQL queries that is
+built on Persistent.
+
+\FuturePlans
+Possible future directions for Persistent:
+\begin{compactitem}
+\item Declaring a schema separately from a record, possibly leveraging GHC's
+  new annotations feature
+\end{compactitem}
+
+Persistent users may also be interested in Groundhog \cref{groundhog}, a
+similar project.
+
+Persistent is recommended to Yesod~\cref{yesod} users.  However, there is
+nothing particular to Yesod or even web development about it.  You can have a
+type-safe, productive way to store data for any kind of Haskell project.
+
+\FurtherReading
+\begin{compactitem}
+\item \url{http://www.yesodweb.com/book/persistent} 
+\item \url{http://hackage.haskell.org/package/esqueleto}
+\item \url{http://www.yesodweb.com/blog/2014/09/persistent-2}
+\item \url{http://www.yesodweb.com/blog/2014/08/announcing-persistent-2}
+\end{compactitem}
 \end{hcarentry}
